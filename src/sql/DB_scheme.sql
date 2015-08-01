@@ -5,7 +5,11 @@ CREATE TABLE users
   second_name text,
   role text NOT NULL,
   creation_date date NOT NULL,
-  CONSTRAINT users_pkey PRIMARY KEY (id)
+  car_id integer,
+  CONSTRAINT users_pkey PRIMARY KEY (id),
+  CONSTRAINT FOREIGN KEY (car_id)
+      REFERENCES cars (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 CREATE TABLE comments
