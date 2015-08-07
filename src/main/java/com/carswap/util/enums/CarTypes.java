@@ -1,4 +1,4 @@
-package com.carswap.util;
+package com.carswap.util.enums;
 
 /**
  * Created by hackomotto on 01.08.15.

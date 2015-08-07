@@ -1,9 +1,10 @@
 package com.carswap.model;
 
-import com.carswap.util.Roles;
+import com.carswap.util.enums.Roles;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -21,6 +22,10 @@ public class User {
 
     @Column(name = "second_name")
     String secondName;
+
+    @Column(name = "birth_date")
+    @Temporal(TemporalType.DATE)
+    Date birthDate;
 
     @Enumerated(EnumType.ORDINAL)
     Roles role;
@@ -38,6 +43,14 @@ public class User {
     Points points;
 
     public User() {
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Points getPoints() {
