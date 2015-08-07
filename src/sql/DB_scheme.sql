@@ -3,6 +3,7 @@ CREATE TABLE users
   id serial NOT NULL,
   name text NOT NULL,
   second_name text,
+  birth_date date NOT NULL,
   role text NOT NULL,
   creation_date date NOT NULL,
   car_id integer,
