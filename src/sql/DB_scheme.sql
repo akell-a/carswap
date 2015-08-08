@@ -63,4 +63,4 @@ CREATE TABLE testdrives
   CONSTRAINT testdrives_provider_id_fk FOREIGN KEY (provider_id)
       REFERENCES users (id)
       ON UPDATE NO ACTION ON DELETE NO ACTION
-)
+);
