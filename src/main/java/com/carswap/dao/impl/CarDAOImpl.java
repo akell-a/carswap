@@ -13,7 +13,6 @@ import java.util.List;
  * Created by sigen on 8/8/2015.
  */
 public class CarDAOImpl implements CarDAO {
-    //????
     public User getOwner(Car car) {
         return (User) HibernateUtils.getSession().createQuery("select u from User as u " +
                 "join u.cars as c " +

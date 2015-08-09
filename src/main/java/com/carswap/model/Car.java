@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class Car implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "car_id")
     long id;
 
     @Column(name = "car_name")
@@ -19,8 +20,7 @@ public class Car implements Serializable {
     @Column(name = "car_type")
     String type;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
     public Car() {

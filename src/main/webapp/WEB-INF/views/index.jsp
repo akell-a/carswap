@@ -15,12 +15,25 @@
         <th>Name</th>
         <th>Second Name</th>
 
-        <c:forEach var="user" items="${userList}" varStatus="user">
+        <c:forEach var="user" items="${userList}">
             <tr>
                 <td>${user.name}</td>
                 <td>${user.secondName}</td>
             </tr>
         </c:forEach>
+
+        <%--<tr>--%>
+            <%--<td>${user1.name}</td>--%>
+            <%--<td>${user1.secondName}</td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+            <%--<td>${user2.name}</td>--%>
+            <%--<td>${user2.secondName}</td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+            <%--<td>${user3.name}</td>--%>
+            <%--<td>${user3.secondName}</td>--%>
+        <%--</tr>--%>
     </table>
 </div>
 </body>

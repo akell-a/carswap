@@ -2,6 +2,7 @@ package com.carswap.model;
 
 import com.carswap.util.enums.Roles;
 import org.hibernate.annotations.Cascade;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import java.util.List;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     long id;
 
     String name;
@@ -27,18 +29,22 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     Date birthDate;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     Roles role;
 
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
     Date creationDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     List<Car> cars;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    List<Comment> comments;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     @JoinColumn(name = "user_id")
     Points points;
 
@@ -107,5 +113,13 @@ public class User implements Serializable {
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

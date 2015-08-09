@@ -12,10 +12,10 @@ import java.util.Date;
 public class Comment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     long id;
 
-    @Column(name = "users_id")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
     @Column(name = "creation_date")

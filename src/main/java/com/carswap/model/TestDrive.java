@@ -12,18 +12,16 @@ import java.util.Date;
 public class TestDrive implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "testdrive_id")
     long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "user_id")
     User user;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "provider_id")
     User provider;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @Column(name = "car_id")
     Car car;
 
     @Column(name = "testdrive_date")
