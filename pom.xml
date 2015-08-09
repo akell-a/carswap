@@ -70,7 +70,6 @@
             <version>${postgres.version}</version>
         </dependency>
 
-
         <!-- Joda-Time -->
         <dependency>
             <groupId>joda-time</groupId>
