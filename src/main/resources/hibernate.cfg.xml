@@ -2,18 +2,18 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>        
+<hibernate-configuration>
   <session-factory>
     <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
     <property name="show_sql">true</property>
 
-      <!-- Mapping files will go here.... -->
+    <!-- Mapping files will go here.... -->
 
-      <mapping class="com.carswap.model.User" />
-      <mapping class="com.carswap.model.Car" />
-      <mapping class="com.carswap.model.Points" />
-      <mapping class="com.carswap.model.TestDrive" />
-      <mapping class="com.carswap.model.Comment" />
+    <mapping class="com.carswap.model.User" />
+    <mapping class="com.carswap.model.Car" />
+    <mapping class="com.carswap.model.Points" />
+    <mapping class="com.carswap.model.TestDrive" />
+    <mapping class="com.carswap.model.Comment" />
 
   </session-factory>
 </hibernate-configuration>
