@@ -46,6 +46,22 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
         return query.list();
     }
 
+    public void changePassword(User user, String newPassword) {
+
+    }
+
+    public void changePhone(User user, String newPhone) {
+
+    }
+
+    public void changeEmail(User user, String newEmail) {
+
+    }
+
+    public void changeLocation(User user, String newLocation) {
+
+    }
+
     public void insert(User user) {
         getSessionFactory().openSession().saveOrUpdate(user);
     }

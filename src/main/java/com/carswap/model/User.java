@@ -32,6 +32,15 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     Roles role;
 
+    @Column(name = "user_phone")
+    String phone;
+
+    @Column(name = "user_email")
+    String email;
+
+    @Column(name = "user_city")
+    String city;
+
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
     Date creationDate;
@@ -49,6 +58,30 @@ public class User implements Serializable {
     Points points;
 
     public User() {
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Date getBirthDate() {

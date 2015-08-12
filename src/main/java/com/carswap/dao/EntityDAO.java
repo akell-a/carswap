@@ -1,10 +1,7 @@
 package com.carswap.dao;
 
 import org.hibernate.LockMode;
-import org.hibernate.Session;
-
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by hackomotto on 09.08.15.
@@ -27,25 +24,13 @@ public interface EntityDAO<T, ID extends Serializable> {
 
     T findEntityById(ID entityId);
 
-    T findEntityById(ID entityId, int revision);
-
     void save(final T entity);
 
     void delete(final T entity);
 
     void delete(final ID entityID);
 
-    List<T> getAll();
-
     void setReadOnly(T entity, boolean readOnly);
 
-    Long getNextSequenceValue(String sequenceName);
-
-    List<Number> getRevisionNumbersForEntity(Class entityClass, Long entityId);
-
     boolean isAttached(T entity);
-
-    Session getCurrentSession();
-
-    Number getRevisionNumberForDate(java.util.Date date);
 }

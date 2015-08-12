@@ -4,17 +4,20 @@ import com.carswap.dao.CarDAO;
 import com.carswap.model.Car;
 import com.carswap.model.TestDrive;
 import com.carswap.model.User;
-import com.carswap.util.HibernateUtils;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by sigen on 8/8/2015.
  */
-public class CarDAOImpl implements CarDAO {
-    public User getOwner(Car car) {
-        return (User) HibernateUtils.getSession().createQuery("select u from User as u " +
+
+@Repository("car")
+public class CarDAOImpl extends EntityDAOImpl<Car, Long> implements CarDAO {
+    //todo check
+    public User getCarOwner(Car car) {
+        return (User) getSessionFactory().openSession().createQuery("select u from User as u " +
                 "join u.cars as c " +
                 "where c = :car")
                 .setEntity("car", car)
@@ -22,19 +25,31 @@ public class CarDAOImpl implements CarDAO {
     }
 
     public List<TestDrive> getCarTestDrives(Car car) {
-        Query query = HibernateUtils.getSession().createQuery("select td " +
+        Query query = getSessionFactory().openSession().createQuery("select td " +
                 "   from TestDrive as td" +
-                "   join td.c as c" +
+                "   join td.car as c" +
                 "   where c = :car");
         query.setEntity("car", car);
         return query.list();
     }
 
     public List<Car> getCarsByType(String type) {
-        Query query = HibernateUtils.getSession().createQuery("select c " +
+        Query query = getSessionFactory().openSession().createQuery("select c " +
                 "from Car as c " +
                 "where c.type = :carType");
         query.setEntity("carType", type);
         return query.list();
+    }
+
+    public String getCarStatus(Car car) {
+        return null;
+    }
+
+    public void addCar(Car car) {
+
+    }
+
+    public int editCar(Car car, long id) {
+        return 0;
     }
 }

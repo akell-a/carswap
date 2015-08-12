@@ -10,20 +10,6 @@
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 
-	<!--<filter>-->
-		<!--<filter-name>openSessionInViewFilter</filter-name>-->
-		<!--<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>-->
-		<!--<init-param>-->
-			<!--<param-name>flushMode</param-name>-->
-			<!--<param-value>AUTO</param-value>-->
-		<!--</init-param>-->
-	<!--</filter>-->
-
-	<!--<filter-mapping>-->
-		<!--<filter-name>openSessionInViewFilter</filter-name>-->
-		<!--<url-pattern>/*</url-pattern>-->
-	<!--</filter-mapping>-->
-
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

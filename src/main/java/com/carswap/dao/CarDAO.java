@@ -8,9 +8,16 @@ import java.util.List;
  * Created by hackomotto on 01.08.15.
  */
 public interface CarDAO {
-    User getOwner(Car car);
-    //name ???
+    User getCarOwner(Car car);
+
     List<TestDrive> getCarTestDrives(Car car);
-    //parameter?
+
     List<Car> getCarsByType(String type);
+
+    String getCarStatus(Car car);
+
+    void addCar(Car car);
+
+    int editCar(Car car, long id);
 }
+

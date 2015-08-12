@@ -4,8 +4,8 @@ import com.carswap.dao.TestDriveDAO;
 import com.carswap.model.Car;
 import com.carswap.model.TestDrive;
 import com.carswap.model.User;
-import com.carswap.util.HibernateUtils;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
@@ -13,9 +13,10 @@ import java.util.List;
 /**
  * Created by sigen on 8/8/2015.
  */
-public class TestDrivesDAOImpl implements TestDriveDAO{
+@Repository("testDrives")
+public class TestDrivesDAOImpl extends EntityDAOImpl<TestDrive, Long> implements TestDriveDAO{
     public List<TestDrive> getTestDrivesByProvider(User provider) {
-        Query query = HibernateUtils.getSession().createQuery("select td " +
+        Query query = getSessionFactory().openSession().createQuery("select td " +
                 "   from TestDrive as td" +
                 "   where td.provider = :provider");
         query.setEntity("provider", provider);
@@ -24,7 +25,7 @@ public class TestDrivesDAOImpl implements TestDriveDAO{
 
     public List<TestDrive> getTestDrivesByUser(User user) {
 
-        Query query = HibernateUtils.getSession().createQuery("select td " +
+        Query query = getSessionFactory().openSession().createQuery("select td " +
                 "   from TestDrive as td" +
                 "   where td.user = :user");
         query.setEntity("user", user);
@@ -33,7 +34,7 @@ public class TestDrivesDAOImpl implements TestDriveDAO{
 
     public List<TestDrive> getTestDrivesByDate(Date date) {
 
-        Query query = HibernateUtils.getSession().createQuery("select td " +
+        Query query = getSessionFactory().openSession().createQuery("select td " +
                 "   from TestDrive as td" +
                 "   where td.date = :date");
         query.setEntity("date", date);
@@ -42,7 +43,7 @@ public class TestDrivesDAOImpl implements TestDriveDAO{
 
     public List<TestDrive> getTestDriveByCar(Car car) {
 
-        Query query = HibernateUtils.getSession().createQuery("select td " +
+        Query query = getSessionFactory().openSession().createQuery("select td " +
                 "   from TestDrive as td" +
                 "   where td.car = :car");
         query.setEntity("car", car);

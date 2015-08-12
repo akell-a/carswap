@@ -14,4 +14,14 @@ public interface UserDAO {
     List<Car> getCarsByUser(User user);
 
     List<User> getAllUsers();
+
+    void changePassword(User user, String newPassword);
+
+    void changePhone(User user, String newPhone);
+
+    void changeEmail(User user, String newEmail);
+
+    void changeLocation(User user, String newLocation);
+
+
 }
