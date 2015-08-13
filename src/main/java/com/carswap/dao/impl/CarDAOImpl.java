@@ -5,7 +5,7 @@ import com.carswap.model.Car;
 import com.carswap.model.TestDrive;
 import com.carswap.model.User;
 import org.hibernate.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.List;
 
@@ -13,8 +13,7 @@ import java.util.List;
  * Created by sigen on 8/8/2015.
  */
 
-@Repository("car")
-public class CarDAOImpl extends EntityDAOImpl<Car, Long> implements CarDAO {
+public class CarDAOImpl extends HibernateDaoSupport implements CarDAO {
     //todo check
     public User getCarOwner(Car car) {
         return (User) getSessionFactory().openSession().createQuery("select u from User as u " +

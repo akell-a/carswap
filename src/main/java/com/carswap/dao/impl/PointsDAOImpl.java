@@ -4,13 +4,13 @@ import com.carswap.dao.PointsDAO;
 import com.carswap.model.Points;
 import com.carswap.model.User;
 import org.hibernate.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 /**
  * Created by hackomotto on 07.08.15.
  */
-@Repository("points")
-public class PointsDAOImpl extends EntityDAOImpl<Points, Long> implements PointsDAO {
+
+public class PointsDAOImpl extends HibernateDaoSupport implements PointsDAO {
     public Points getUserPoints(User user) {
         Query query = getSessionFactory().openSession().createQuery("select p " +
                 "   from Points as p" +

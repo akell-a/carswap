@@ -5,7 +5,7 @@ import com.carswap.model.Car;
 import com.carswap.model.TestDrive;
 import com.carswap.model.User;
 import org.hibernate.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.Date;
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by sigen on 8/8/2015.
  */
-@Repository("testDrives")
-public class TestDrivesDAOImpl extends EntityDAOImpl<TestDrive, Long> implements TestDriveDAO{
+
+public class TestDrivesDAOImpl extends HibernateDaoSupport implements TestDriveDAO{
     public List<TestDrive> getTestDrivesByProvider(User provider) {
         Query query = getSessionFactory().openSession().createQuery("select td " +
                 "   from TestDrive as td" +

@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.List;
 /**
  * Created by hackomotto on 09.08.15.
  */
+@Repository
 public abstract class EntityDAOImpl<T, ID extends Serializable> extends HibernateDaoSupport implements EntityDAO<T, ID> {
 
     protected Class<T> persistentClass;

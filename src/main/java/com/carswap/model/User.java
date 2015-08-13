@@ -20,6 +20,8 @@ public class User implements Serializable {
     @Column(name = "user_id")
     long id;
 
+    String password;
+
     String name;
 
     @Column(name = "second_name")
@@ -58,6 +60,14 @@ public class User implements Serializable {
     Points points;
 
     public User() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {

@@ -2,17 +2,17 @@ package com.carswap.dao.impl;
 
 import com.carswap.dao.UserDAO;
 import com.carswap.model.Car;
+import com.carswap.model.TestDrive;
 import com.carswap.model.User;
 import org.hibernate.Query;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by hackomotto on 01.08.15.
  */
-@Repository("userDao")
+
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 
     public User getUserById(Long id) {

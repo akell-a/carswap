@@ -14,6 +14,9 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
+    <mvc:resources mapping="/resources/**" location="/resources/template/login/"
+                   cache-period="31556926"/>
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
@@ -42,7 +45,11 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-	<bean id="userDao" class="com.carswap.dao.impl.UserDAOImpl">
+	<bean id="userDao" class="com.carswap.dao.impl.UserDAOImpl" parent="entityDAO">
+		<!--<property name="sessionFactory" ref="sessionFactory" />-->
+	</bean>
+
+	<bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>    	
+	</bean>
 </beans>

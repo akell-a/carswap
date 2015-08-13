@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class UserController {
 
-    @RequestMapping(value = "/register.do", method = RequestMethod.POST)
-    public void registerUser(){
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String showMainPage() {
+        return "index";
+    }
 
+    @RequestMapping(value = "/register.do", method = RequestMethod.POST)
+    public String registerUser(){
+        return "index";
     }
 
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
-    public void loginUser(){
-
+    public String loginUser(){
+        return "index";
     }
 }
