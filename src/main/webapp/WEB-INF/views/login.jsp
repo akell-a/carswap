@@ -28,7 +28,7 @@
                         <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
                     </div>
                     <div class="logmod__form">
-                        <form accept-charset="utf-8" action="/carswap/login.do" class="simform" method="post">
+                        <form accept-charset="utf-8" action="/carswap/processLogin.do" class="simform" method="post">
                             <div class="sminputs">
                                 <div class="input full">
                                     <label class="string optional" for="email-sminputs">Email*</label>

@@ -1,13 +1,15 @@
 CREATE TABLE users
 (
   user_id serial NOT NULL,
+  user_email text NOT NULL,
   name text NOT NULL,
   second_name text,
   password varchar NOT NULL,
+  user_city text,
+  user_phone text,
   birth_date date,
   role text NOT NULL,
   creation_date date NOT NULL,
-  car_id integer,
   CONSTRAINT users_pkey PRIMARY KEY (user_id)
 );
 
@@ -64,7 +66,3 @@ CREATE TABLE testdrives
       REFERENCES users (user_id)
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-
-ALTER TABLE users ADD FOREIGN KEY (car_id)
-      REFERENCES cars (car_id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION;

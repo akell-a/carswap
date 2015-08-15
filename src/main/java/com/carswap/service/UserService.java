@@ -18,7 +18,7 @@ public class UserService {
     @Autowired
     UserDAOImpl userDAO;
 
-    private boolean isUserExist(User user){
+    public boolean isUserRegistered(User user){
         return false;
     }
 
@@ -26,8 +26,9 @@ public class UserService {
 
     }
 
-    public void loginUser(){
-
+    public User getUserByEmail(String email){
+        User userFromDB = userDAO.getUserByEmail(email);
+        return userFromDB != null ? userFromDB : null;
     }
 
     //todo Gena

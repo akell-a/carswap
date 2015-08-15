@@ -31,6 +31,12 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
                 .uniqueResult();
     }
 
+    public User getUserByEmail(String email) {
+        return (User) getSessionFactory().openSession().createQuery("select u from User u where u.email = :email")
+                .setString("email", email)
+                .uniqueResult();
+    }
+
     public List<Car> getCarsByUser(User user) {
         Query query = getSessionFactory().openSession().createQuery("select c " +
                 "   from Car as c" +

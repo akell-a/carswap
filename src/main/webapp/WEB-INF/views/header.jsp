@@ -1,9 +1,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Alexx - Home</title>
+  <title>Carswap</title>
   <meta name="description" content="Multipurpose Responsive Site Theme">
   <meta name="author" content="pixel-industry">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -111,16 +112,25 @@
             <i class="icon-nav icon-search"></i>
             Test Drives</a>
         </li>
-        <li>
-          <a href="login.do">
-            <i class="icon-nav icon-key"></i>
-            Log in</a>
-        </li>
-        <li>
-          <a href="register.do">
-            <i class="icon-nav icon-plus-sign"></i>
-            Register</a>
-        </li>
+        <c:if test = "${empty sessionScope.user.name}">
+          <li>
+            <a href="login.do">
+              <i class="icon-nav icon-key"></i>
+              Log in</a>
+          </li>
+          <li>
+            <a href="register.do">
+              <i class="icon-nav icon-plus-sign"></i>
+              Register</a>
+          </li>
+        </c:if>
+          <c:if test = "${not empty sessionScope.user.name}">
+              <li>
+                  <a href="logoutUser.do">
+                      <i class="icon-nav icon-minus-sign"></i>
+                      Log out</a>
+              </li>
+          </c:if>
         <li>
           <a href="#">
             <i class="icon-nav icon-map-marker"></i>
