@@ -7,6 +7,11 @@
     <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
     <property name="show_sql">true</property>
 
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">postgres</property>
+
     <!-- Mapping files will go here.... -->
 
     <mapping class="com.carswap.model.User" />

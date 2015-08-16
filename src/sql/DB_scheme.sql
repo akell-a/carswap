@@ -31,6 +31,7 @@ CREATE TABLE cars
   car_name text NOT NULL,
   car_type text NOT NULL,
   user_id integer NOT NULL,
+  car_status text NOT NULL,
   CONSTRAINT cars_pk PRIMARY KEY (car_id),
   CONSTRAINT cars_user_id_fk FOREIGN KEY (user_id)
       REFERENCES users (user_id)
@@ -55,6 +56,7 @@ CREATE TABLE testdrives
   provider_id integer NOT NULL,
   user_id integer NOT NULL,
   testdrive_date date NOT NULL,
+  testdrive_status text NOT NULL,
   CONSTRAINT testdives_pk PRIMARY KEY (testdrive_id),
   CONSTRAINT testdrives_user_id_fk FOREIGN KEY (user_id)
       REFERENCES users (user_id)

@@ -3,12 +3,16 @@ package com.carswap.controller;
 import com.carswap.model.User;
 import com.carswap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by hackomotto on 09.08.15.
@@ -21,8 +25,19 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @InitBinder
+    public void registerInitBinder(WebDataBinder binder){
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.YYYY");
+        CustomDateEditor birthdayEditor = new CustomDateEditor(dateFormat, true);
+        binder.registerCustomEditor(Date.class, birthdayEditor);
+    }
+
     @RequestMapping(value = "/processRegister.do", method = RequestMethod.POST)
-    public String registerUser(){
+    public String registerUser(@ModelAttribute("user") User user, BindingResult result){
+        if(result.hasErrors()){
+            //no error page
+        }
+        userService.registerUser();
         return "login";
     }
 

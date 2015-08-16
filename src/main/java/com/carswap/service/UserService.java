@@ -3,9 +3,14 @@ package com.carswap.service;
 import com.carswap.dao.impl.UserDAOImpl;
 import com.carswap.model.Car;
 import com.carswap.model.User;
+import com.carswap.util.HibernateUtil;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +38,10 @@ public class UserService {
 
     //todo Gena
     public List<Car> getUserCars(User user){
-        return null;
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<Car> list = userDAO.getCarsByUser(user);
+        session.close();
+        return list;
     }
 }

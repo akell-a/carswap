@@ -1,5 +1,8 @@
 package com.carswap.model;
 
+import com.carswap.util.enums.CarStatus;
+import com.carswap.util.enums.TestDriveStatus;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -27,11 +30,23 @@ public class TestDrive implements Serializable {
     @Column(name = "testdrive_date")
     Date date;
 
+    @Column(name = "testdrive_status")
+    @Enumerated(EnumType.STRING)
+    TestDriveStatus testDriveStatus;
+
     public TestDrive() {
     }
 
     public long getId() {
         return id;
+    }
+
+    public TestDriveStatus getTestDriveStatus() {
+        return testDriveStatus;
+    }
+
+    public void setTestDriveStatus(TestDriveStatus testDriveStatus) {
+        this.testDriveStatus = testDriveStatus;
     }
 
     public void setId(long id) {

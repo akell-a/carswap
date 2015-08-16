@@ -2,7 +2,6 @@ package com.carswap.dao.impl;
 
 import com.carswap.dao.UserDAO;
 import com.carswap.model.Car;
-import com.carswap.model.TestDrive;
 import com.carswap.model.User;
 import org.hibernate.Query;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;

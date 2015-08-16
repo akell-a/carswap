@@ -48,6 +48,10 @@
 	<bean id="userDao" class="com.carswap.dao.impl.UserDAOImpl" parent="entityDAO">
 		<!--<property name="sessionFactory" ref="sessionFactory" />-->
 	</bean>
+	<bean id="carDao" class="com.carswap.dao.impl.CarDAOImpl" parent="entityDAO">
+		<!--<property name="sessionFactory" ref="sessionFactory" />-->
+	</bean>
+
 
 	<bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">
 		<property name="sessionFactory" ref="sessionFactory" />

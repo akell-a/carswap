@@ -1,5 +1,5 @@
 package com.carswap.model;
-
+import com.carswap.util.enums.CarStatus;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,6 +23,10 @@ public class Car implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
+    @Column(name = "car_status")
+    @Enumerated(EnumType.STRING)
+    CarStatus carStatus;
+
     public Car() {
     }
 
@@ -32,6 +36,14 @@ public class Car implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public CarStatus getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(CarStatus carStatus) {
+        this.carStatus = carStatus;
     }
 
     public String getName() {
