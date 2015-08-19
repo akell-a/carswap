@@ -1,59 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
-	<!--<mvc:resources mapping="/resources/**" location="/resources/carswapMain/"-->
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven />
+    <!--<mvc:resources mapping="/resources/**" location="/resources/carswapMain/"-->
     <mvc:resources mapping="/resources/**" location="/resources/carswapMain/"
                    cache-period="31556926"/>
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-	
-	<context:component-scan base-package="com.carswap" />
-
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver"/>
-		<property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
-		<property name="username" value="postgres"/>
-		<property name="password" value="123456"/>
-	</bean>
-    
-    <bean id="sessionFactory"
-        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
     </bean>
-     
+
+    <context:component-scan base-package="com.carswap" />
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+    </bean>
+
     <tx:annotation-driven />
 
     <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    
-	<bean id="userDao" class="com.carswap.dao.impl.UserDAOImpl" parent="entityDAO">
-		<!--<property name="sessionFactory" ref="sessionFactory" />-->
-	</bean>
-	<bean id="carDao" class="com.carswap.dao.impl.CarDAOImpl" parent="entityDAO">
-		<!--<property name="sessionFactory" ref="sessionFactory" />-->
-	</bean>
 
+    <bean id="workflowController" class="com.carswap.controller.WorkflowController">
+    </bean>
 
-	<bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+    <bean id="userController" class="com.carswap.controller.UserController">
+        <property name="userServiceImpl" ref="userServiceImpl" />
+    </bean>
+
+    <bean id="userDAOImpl" class="com.carswap.dao.impl.UserDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!--<bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">-->
+    <!--<property name="sessionFactory" ref="sessionFactory" />-->
+    <!--</bean>-->
+
+    <bean id="carDAOImpl" class="com.carswap.dao.impl.CarDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="pointsDAOImpl" class="com.carswap.dao.impl.PointsDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
 </beans>

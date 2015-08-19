@@ -3,45 +3,27 @@ package com.carswap.service;
 import com.carswap.dao.impl.UserDAOImpl;
 import com.carswap.model.Car;
 import com.carswap.model.User;
-import com.carswap.util.HibernateUtil;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hackomotto on 09.08.15.
+ * Created by hackomotto on 16.08.15.
  */
+public interface UserService {
 
-@Service
-public class UserService {
+    public boolean isUserRegistered(User user);
 
-    @Autowired
-    UserDAOImpl userDAO;
+    public void registerUser();
 
-    public boolean isUserRegistered(User user){
-        return false;
-    }
+    public User getUserByEmail(String email);
 
-    public void registerUser(){
+    public List<Car> getUserCars(User user);
 
-    }
+    public boolean editPassword(String oldPassword, String newPassword, String email);
 
-    public User getUserByEmail(String email){
-        User userFromDB = userDAO.getUserByEmail(email);
-        return userFromDB != null ? userFromDB : null;
-    }
+    public boolean editEmail(String oldEmail, String newEmail);
 
-    //todo Gena
-    public List<Car> getUserCars(User user){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        List<Car> list = userDAO.getCarsByUser(user);
-        session.close();
-        return list;
-    }
+    public boolean editPoints(String email, Long points, String operation);
+
+    public void setUserDAOImpl(UserDAOImpl userDAO);
 }

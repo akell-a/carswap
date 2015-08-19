@@ -2,12 +2,14 @@ package com.carswap.controller;
 
 import com.carswap.model.User;
 import com.carswap.service.UserService;
+import com.carswap.util.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -23,7 +25,10 @@ import java.util.Date;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserService userServiceImpl;
+
+    public static final String USER_MODEL = "user";
+
 
     @InitBinder
     public void registerInitBinder(WebDataBinder binder){
@@ -37,16 +42,17 @@ public class UserController {
         if(result.hasErrors()){
             //no error page
         }
-        userService.registerUser();
+        userServiceImpl.registerUser();
         return "login";
     }
 
     @RequestMapping(value = "/processLogin.do", method = RequestMethod.POST)
     public String loginUser(@RequestParam String email, @RequestParam String password, HttpServletRequest request) throws Exception{
-        User userFromDB = userService.getUserByEmail(email);
+        User userFromDB = userServiceImpl.getUserByEmail(email);
         if(null != userFromDB){
             if(userFromDB.getPassword().equals(password)){
-                request.getSession().setAttribute("user", userFromDB);
+                request.getSession().setAttribute(USER_MODEL, userFromDB);
+
                 return "redirect:profile.do";
             }
         }
@@ -56,7 +62,57 @@ public class UserController {
 
     @RequestMapping(value = "/logoutUser.do", method = RequestMethod.GET)
     public String logoutUser(HttpServletRequest request){
-        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute(USER_MODEL);
+
         return "redirect:main.do";
+    }
+
+    @RequestMapping(value = "/processChangePassword.do", method = RequestMethod.POST)
+    public ModelAndView changePassword(@RequestParam String passwordOld, @RequestParam String passwordNew,
+                                       HttpServletRequest request) throws Exception{
+        User modelUser = (User) request.getSession().getAttribute(USER_MODEL);
+        if(null != modelUser){
+            ModelAndView modelAndView = new ModelAndView("editResult");
+            boolean status = userServiceImpl.editPassword(passwordOld, passwordNew, modelUser.getEmail());
+            String result = status ? "success" : "fail";
+            modelAndView.addObject("result", result);
+
+            return modelAndView;
+        }
+
+        throw new Exception();
+    }
+
+    @RequestMapping(value = "/processChangeEmail.do", method = RequestMethod.POST)
+    public ModelAndView changeEmail(@RequestParam String newEmail, HttpServletRequest request) throws Exception{
+        User modelUser = (User) request.getSession().getAttribute(USER_MODEL);
+        if(null != modelUser){
+            ModelAndView modelAndView = new ModelAndView("editResult");
+            boolean status = userServiceImpl.editEmail(modelUser.getEmail(), newEmail);
+            String result = status ? "success" : "fail";
+            modelAndView.addObject("result", result);
+
+            return modelAndView;
+        }
+
+        throw new Exception();
+    }
+
+    @RequestMapping(value = "/processAddPoints.do", method = RequestMethod.POST)
+    public ModelAndView addPoints(@RequestParam Long points, @RequestParam String operation, HttpServletRequest request) throws Exception{
+        User modelUser = (User) request.getSession().getAttribute(USER_MODEL);
+        if(null == modelUser || !modelUser.getRole().equals(Roles.ADMIN)){
+            throw new Exception();
+        }
+
+        ModelAndView modelAndView = new ModelAndView("editResult");
+        boolean status = userServiceImpl.editPoints(modelUser.getEmail(), points, operation);
+        String result = status ? "success" : "fail";
+        modelAndView.addObject("result", result);
+        return modelAndView;
+    }
+
+    public void setUserServiceImpl(UserService userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 }

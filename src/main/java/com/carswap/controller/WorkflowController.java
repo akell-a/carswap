@@ -4,6 +4,7 @@ import com.carswap.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,5 +38,23 @@ public class WorkflowController {
     @RequestMapping(value = "/register.do", method = RequestMethod.GET)
     public String showRegister() {
         return "register";
+    }
+
+    @RequestMapping(value = "/changePassword.do", method = RequestMethod.GET)
+    public ModelAndView showChangePassword(){
+        ModelAndView modelAndView = new ModelAndView("editPage");
+        return modelAndView.addObject("editType", "password");
+    }
+
+    @RequestMapping(value = "/editEmail.do", method = RequestMethod.GET)
+    public ModelAndView showEditEmail(){
+        ModelAndView modelAndView = new ModelAndView("editPage");
+        return modelAndView.addObject("editType", "email");
+    }
+
+    @RequestMapping(value = "/editPoints.do", method = RequestMethod.GET)
+    public ModelAndView showEditPoints(){
+        ModelAndView modelAndView = new ModelAndView("editPage");
+        return modelAndView.addObject("editType", "points");
     }
 }

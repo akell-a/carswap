@@ -4,6 +4,8 @@ import com.carswap.dao.PointsDAO;
 import com.carswap.model.Points;
 import com.carswap.model.User;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 /**
@@ -18,5 +20,21 @@ public class PointsDAOImpl extends HibernateDaoSupport implements PointsDAO {
                 "   where us = :user");
         query.setEntity("user", user);
         return (Points) query.uniqueResult();
+    }
+
+    public void save(Points points) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx;
+        try {
+            tx = session.beginTransaction();
+            session.saveOrUpdate(points);
+            tx.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
     }
 }

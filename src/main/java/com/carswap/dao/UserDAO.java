@@ -23,5 +23,9 @@ public interface UserDAO {
 
     void changeLocation(User user, String newLocation);
 
+    User getUserByEmail(String email);
 
+    Object merge(User user);
+
+    void update(User user);
 }

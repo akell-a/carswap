@@ -20,7 +20,7 @@
                 <a href="main.do">Main / </a>
             </li>
             <li class="active">
-                <a href="profile.jsp">Profile page</a>
+                <a href="profile.do">Profile page</a>
             </li>
         </ul>
     </section>
@@ -48,7 +48,6 @@
                 sunt explicabo. Nemo enim ipsam voluptatem quia
                 voluptas sit aspernatur aut.
             </p>
-
             <p>
                 Sed ut perspiciatis unde omnis iste natus error sit
                 voluptatem accusantium doloremque laudantium, totam
@@ -63,7 +62,6 @@
                 sunt explicabo. Nemo enim ipsam voluptatem quia
                 voluptas sit aspernatur aut.
             </p>
-
             <blockquote class="text-left">
 
                 This is an example of a blockquote. It's
@@ -71,7 +69,6 @@
                 use it on all of your pages.
 
             </blockquote>
-
             <p>
                 Sed ut perspiciatis unde omnis iste natus error
                 sit voluptatem accusantium doloremque laudantium,
@@ -99,18 +96,14 @@
             </p>
         </article><!-- .content-sidebar-left end -->
 
-
-
         <aside class="grid_3 aside">
-
             <ul class="aside-widgets">
-
                 <li class="categories">
                     <h5>Available functions</h5>
                     <ul class="arrow-list">
-                        <li><a href="#">Change password</a></li>
-                        <li><a href="#">Change email</a></li>
-                        <li><a href="#">Add points</a></li>
+                        <li><a href="changePassword.do">Change password</a></li>
+                        <li><a href="editEmail.do">Change email</a></li>
+                        <li><a href="editPoints.do">Add points</a></li>
                     </ul>
                 </li><!-- categories widget end -->
             </ul><!-- sidebar widgets end -->

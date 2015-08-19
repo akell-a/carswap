@@ -22,7 +22,7 @@ public class Points implements Serializable {
     User user;
 
     @Column
-    long amount;
+    long amount = 0;
 
     public long getId() {
         return id;

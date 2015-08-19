@@ -8,4 +8,6 @@ import com.carswap.model.User;
  */
 public interface PointsDAO {
     Points getUserPoints(User user);
+
+    void save(Points points);
 }
