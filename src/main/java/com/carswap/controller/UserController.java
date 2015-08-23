@@ -91,7 +91,8 @@ public class UserController {
             boolean status = userServiceImpl.editEmail(modelUser.getEmail(), newEmail);
             String result = status ? "success" : "fail";
             modelAndView.addObject("result", result);
-
+            modelUser.setEmail(newEmail);
+            request.getSession().setAttribute("user", modelUser);
             return modelAndView;
         }
 
@@ -109,6 +110,10 @@ public class UserController {
         boolean status = userServiceImpl.editPoints(modelUser.getEmail(), points, operation);
         String result = status ? "success" : "fail";
         modelAndView.addObject("result", result);
+        Long newAmountOfPoints = modelUser.getPoints().getAmount() + points;
+        modelUser.getPoints().setAmount(newAmountOfPoints);
+        modelAndView.addObject("user", result);
+        request.getSession().setAttribute("user", modelUser);
         return modelAndView;
     }
 

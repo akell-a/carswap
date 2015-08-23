@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
     <link href="${normalizeCss}" rel="stylesheet" />
     <link href="${styleCss}" rel="stylesheet" />
     <link href="${fontCss}" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -28,13 +30,18 @@
                         <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
                     </div>
                     <div class="logmod__form">
-                        <form accept-charset="utf-8" action="/carswap/register.do" class="simform" method="post">
+                        <form accept-charset="utf-8" action="/carswap/processRegister.do" class="simform" method="post">
                             <div class="sminputs">
-                                <div class="input full">
-                                    <label class="string optional" for="email">Email*</label>
+                                <div class="input string optional">
+                                    <label class="string optional" for="email">Email *</label>
                                     <input class="string optional" maxlength="255" id="email" name="email" placeholder="Email" type="email" size="50" />
                                 </div>
+                                <div class="input string optional">
+                                    <label class="string optional" for="birthDate">Birth Day </label>
+                                    <input class="string optional" maxlength="255" id="birthDate" name="birthDate" placeholder="dd.MM.YYYY" type="text" size="50" />
+                                </div>
                             </div>
+
                             <div class="sminputs">
                                 <div class="input string optional">
                                     <label class="string optional" for="name">Name *</label>
@@ -45,24 +52,25 @@
                                     <input class="string optional" maxlength="255" id="secondName" name="secondName" placeholder="Second Name" type="text" size="50" />
                                 </div>
                             </div>
+
                             <div class="sminputs">
                                 <div class="input string optional">
-                                    <label class="string optional" for="birthDate">Birth Day </label>
-                                    <input class="string optional" maxlength="255" id="birthDate" name="birthDate" placeholder="Birth Day" type="text" size="50" />
+                                    <label class="string optional" for="phone">Phone</label>
+                                    <input class="string optional" maxlength="255" id="phone" name="phone" placeholder="You contact phone" type="text" size="50" />
                                 </div>
                                 <div class="input string optional">
-                                    <label class="string optional" for="city">City </label>
+                                    <label class="string optional" for="city">City</label>
                                     <input class="string optional" maxlength="255" id="city" name="city" placeholder="City" type="text" size="50" />
                                 </div>
                             </div>
                             <div class="sminputs">
                                 <div class="input string optional">
                                     <label class="string optional" for="password">Password *</label>
-                                    <input class="string optional" maxlength="255" id="password" name="password" placeholder="Password" type="text" size="50" />
+                                    <input class="string optional" maxlength="255" id="password" name="password" placeholder="Password" type="password" size="50" />
                                 </div>
                                 <div class="input string optional">
                                     <label class="string optional" for="password-repeat">Repeat password *</label>
-                                    <input class="string optional" maxlength="255" id="password-repeat" placeholder="Repeat password" type="text" size="50" />
+                                    <input class="string optional" maxlength="255" id="password-repeat" placeholder="Repeat password" type="password" size="50" />
                                 </div>
                             </div>
                             <div class="simform__actions">
@@ -85,8 +93,11 @@
         </div>
     </div>
 </div>
+
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
 <spring:url value="/resources/js/index.js" var="indexJs" />
 <script src="${indexJs}"></script>
+
 </body>
 </html>

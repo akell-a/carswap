@@ -34,66 +34,30 @@
     <div class="container_12">
 
         <article class="grid_9 content-sidebar-right">
-            <p>
-                ${sessionScope.user.name}  Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae ab illo inventore
-                veritatis et quasi architecto beatae vitae dicta
-                sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut. Sed ut perspiciatis
-                unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem
-                aperiam, eaque ipsa quae ab illo inventore
-                veritatis et quasi architecto beatae vitae dicta
-                sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut.
-            </p>
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae <span class="text-light">
-                            ab illo inventore veritatis et quasi architecto beatae
-                            vitae dicta sunt explicabo. Nemo enim</span> ipsam voluptatem
-                quia volupta sit aspernatur aut. Sed ut perspiciatis
-                unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem
-                aperiam, eaque ipsa quae ab illo inventore
-                veritatis et quasi architecto beatae vitae dicta
-                sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut.
-            </p>
             <blockquote class="text-left">
 
-                This is an example of a blockquote. It's
-                simple, clean and very easy to use. And you can
-                use it on all of your pages.
-
+                <table width="640px">
+                    <tr>
+                        <td>E-mail: ${user.email}</td>
+                        <td>Your city: ${user.city}</td>
+                    </tr>
+                    <tr>
+                        <td>Name: ${user.name}</td>
+                        <td>Second Name: ${user.secondName}</td>
+                    </tr>
+                    <tr>
+                        <td>Your phone: ${user.phone}</td>
+                        <td>Birth date: ${user.birthDate}</td>
+                    </tr>
+                    <tr>
+                        <td>Role: ${user.role}</td>
+                        <td>Creation date: ${user.creationDate}</td>
+                    </tr>
+                    <tr>
+                        <td>Your points amount: ${user.points}</td>
+                    </tr>
+                </table>
             </blockquote>
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error
-                sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo
-                inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam
-                voluptatem quia voluptas sit aspernatur aut.
-
-
-                Net quasi architecto beatae vitae dicta sunt
-                explicabo. Sed ut perspiciatis unde omnis iste natus error
-                sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo
-                inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo.
-                Sed ut perspiciatis unde omnis iste natus error
-                sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo
-                inventore veritatis quasi
-                architecto beatae vitae dicta sunt explicabo.
-                Nemo enim ipsam
-                voluptatem quia voluptas sit aspernatur aut.
-                Net quasi architecto beatae vitae dicta sunt
-                explicabo.
-            </p>
         </article><!-- .content-sidebar-left end -->
 
         <aside class="grid_3 aside">

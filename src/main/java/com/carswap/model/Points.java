@@ -47,4 +47,9 @@ public class Points implements Serializable {
     public void setAmount(long amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(amount);
+    }
 }
