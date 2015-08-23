@@ -25,10 +25,9 @@ import java.util.Date;
 public class UserController {
 
     @Autowired
-    UserService userServiceImpl;
+    UserService userService;
 
     public static final String USER_MODEL = "user";
-
 
     @InitBinder
     public void registerInitBinder(WebDataBinder binder){
@@ -42,13 +41,14 @@ public class UserController {
         if(result.hasErrors()){
             //no error page
         }
-        userServiceImpl.registerUser(user);
+        userService.registerUser(user);
+
         return "login";
     }
 
     @RequestMapping(value = "/processLogin.do", method = RequestMethod.POST)
     public String loginUser(@ModelAttribute("user") User user, HttpServletRequest request) throws Exception{
-        User userFromDB = userServiceImpl.getUserByEmail(user.getEmail());
+        User userFromDB = userService.getUserByEmail(user.getEmail());
         if(null != userFromDB){
             if(userFromDB.getPassword().equals(user.getPassword())){
                 request.getSession().setAttribute(USER_MODEL, userFromDB);
@@ -73,7 +73,7 @@ public class UserController {
         User modelUser = (User) request.getSession().getAttribute(USER_MODEL);
         if(null != modelUser){
             ModelAndView modelAndView = new ModelAndView("editResult");
-            boolean status = userServiceImpl.editPassword(passwordOld, passwordNew, modelUser.getEmail());
+            boolean status = userService.editPassword(passwordOld, passwordNew, modelUser.getEmail());
             String result = status ? "success" : "fail";
             modelAndView.addObject("result", result);
 
@@ -88,11 +88,12 @@ public class UserController {
         User modelUser = (User) request.getSession().getAttribute(USER_MODEL);
         if(null != modelUser){
             ModelAndView modelAndView = new ModelAndView("editResult");
-            boolean status = userServiceImpl.editEmail(modelUser.getEmail(), newEmail);
+            boolean status = userService.editEmail(modelUser.getEmail(), newEmail);
             String result = status ? "success" : "fail";
             modelAndView.addObject("result", result);
             modelUser.setEmail(newEmail);
             request.getSession().setAttribute("user", modelUser);
+
             return modelAndView;
         }
 
@@ -107,17 +108,18 @@ public class UserController {
         }
 
         ModelAndView modelAndView = new ModelAndView("editResult");
-        boolean status = userServiceImpl.editPoints(modelUser.getEmail(), points, operation);
+        boolean status = userService.editPoints(modelUser.getEmail(), points, operation);
+
         String result = status ? "success" : "fail";
         modelAndView.addObject("result", result);
-        Long newAmountOfPoints = modelUser.getPoints().getAmount() + points;
-        modelUser.getPoints().setAmount(newAmountOfPoints);
+        modelUser.getPoints().setAmount(modelUser.getPoints().getAmount() + points);
         modelAndView.addObject("user", result);
         request.getSession().setAttribute("user", modelUser);
+
         return modelAndView;
     }
 
-    public void setUserServiceImpl(UserService userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
