@@ -5,6 +5,8 @@ import com.carswap.model.Car;
 import com.carswap.model.TestDrive;
 import com.carswap.model.User;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.List;
@@ -45,10 +47,45 @@ public class CarDAOImpl extends HibernateDaoSupport implements CarDAO {
     }
 
     public void addCar(Car car) {
-
+        Session session = getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(car);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public int editCar(Car car, long id) {
-        return 0;
+        Session session = getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            Car oldCar = (Car) session.load(Car.class, id);
+            oldCar.setCarStatus(car.getCarStatus());
+            oldCar.setName(car.getName());
+            oldCar.setType(car.getType());
+            oldCar.setUser(car.getUser());
+            session.merge(oldCar);
+            session.getTransaction().commit();
+            session.close();
+            return 1;
+        } catch (Exception e){
+            return 0;
+        }
+        finally {
+            session.close();
+        }
+    }
+
+    public void deleteCar(long id) {
+        Session session = getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            Car car = (Car) session.load(Car.class, id);
+            session.delete(car);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
     }
 }

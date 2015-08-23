@@ -7,7 +7,6 @@ import com.carswap.model.Car;
 import com.carswap.model.Points;
 import com.carswap.model.User;
 import com.carswap.service.UserService;
-import com.carswap.util.HibernateUtil;
 import com.carswap.util.enums.Operation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,8 +31,8 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    public void registerUser(){
-
+    public void registerUser(User user){
+        userDAOImpl.insert(user);
     }
 
     public User getUserByEmail(String email){
@@ -44,11 +43,7 @@ public class UserServiceImpl implements UserService {
 
     //todo Gena
     public List<Car> getUserCars(User user){
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
         List<Car> list = userDAOImpl.getCarsByUser(user);
-        session.close();
-
         return list;
     }
 

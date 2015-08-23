@@ -46,7 +46,6 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
         finally {
             session.close();
         }
-
         return user;
     }
 

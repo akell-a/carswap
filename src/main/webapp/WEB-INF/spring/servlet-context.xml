@@ -29,7 +29,7 @@
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
         <property name="username" value="postgres"/>
-        <property name="password" value="123456"/>
+        <property name="password" value="postgres"/>
     </bean>
 
     <bean id="sessionFactory"
@@ -56,9 +56,9 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <!--<bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">-->
-    <!--<property name="sessionFactory" ref="sessionFactory" />-->
-    <!--</bean>-->
+    <bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">
+    <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
     <bean id="carDAOImpl" class="com.carswap.dao.impl.CarDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />

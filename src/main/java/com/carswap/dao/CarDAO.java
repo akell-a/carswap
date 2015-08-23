@@ -19,5 +19,7 @@ public interface CarDAO {
     void addCar(Car car);
 
     int editCar(Car car, long id);
+
+    void deleteCar(long id);
 }
 

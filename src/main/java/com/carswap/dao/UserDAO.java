@@ -28,4 +28,7 @@ public interface UserDAO {
     Object merge(User user);
 
     void update(User user);
+
+    void insert(User user);
+
 }

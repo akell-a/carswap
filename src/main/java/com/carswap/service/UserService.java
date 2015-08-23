@@ -13,7 +13,7 @@ public interface UserService {
 
     public boolean isUserRegistered(User user);
 
-    public void registerUser();
+    public void registerUser(User user);
 
     public User getUserByEmail(String email);
 

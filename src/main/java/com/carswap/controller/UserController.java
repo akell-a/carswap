@@ -42,7 +42,7 @@ public class UserController {
         if(result.hasErrors()){
             //no error page
         }
-        userServiceImpl.registerUser();
+        userServiceImpl.registerUser(user);
         return "login";
     }
 
