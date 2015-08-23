@@ -1,6 +1,6 @@
 package com.carswap.service.Impl;
 
-import com.carswap.dao.impl.CarDAOImpl;
+import com.carswap.dao.CarDAO;
 import com.carswap.model.Car;
 import com.carswap.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 public class CarServiceImpl implements CarService{
 
     @Autowired
-    CarDAOImpl carDAO;
+    CarDAO carDAO;
 
-    public void setCarDAO(CarDAOImpl carDAO) {
+    public void setCarDAO(CarDAO carDAO) {
         this.carDAO = carDAO;
     }
 

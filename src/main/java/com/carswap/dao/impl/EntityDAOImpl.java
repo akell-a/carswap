@@ -1,14 +1,12 @@
 package com.carswap.dao.impl;
 
 import com.carswap.dao.EntityDAO;
-import org.hibernate.Criteria;
-import org.hibernate.LockMode;
-import org.hibernate.NonUniqueResultException;
+import com.carswap.model.User;
+import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +18,6 @@ import java.util.List;
 /**
  * Created by hackomotto on 09.08.15.
  */
-@Repository
 public abstract class EntityDAOImpl<T, ID extends Serializable> extends HibernateDaoSupport implements EntityDAO<T, ID> {
 
     protected Class<T> persistentClass;
@@ -128,6 +125,23 @@ public abstract class EntityDAOImpl<T, ID extends Serializable> extends Hibernat
         }
 
         getSessionFactory().openSession().setReadOnly(actualEntity, readOnly);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void update(User user){
+        Session session = getSessionFactory().openSession();
+        Transaction tx;
+        try {
+            tx = session.beginTransaction();
+            session.update(user);
+            tx.commit();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
     }
 
     public static Object unique(final List list) throws NonUniqueResultException {

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by hackomotto on 01.08.15.
  */
-public interface TestDriveDAO {
+public interface TestDriveDAO extends EntityDAO<TestDrive, Long>{
     //name?
     List<TestDrive> getTestDrivesByProvider(User user);
 

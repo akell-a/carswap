@@ -1,5 +1,6 @@
 package com.carswap.dao;
 
+import com.carswap.model.User;
 import org.hibernate.LockMode;
 import java.io.Serializable;
 
@@ -33,4 +34,6 @@ public interface EntityDAO<T, ID extends Serializable> {
     void setReadOnly(T entity, boolean readOnly);
 
     boolean isAttached(T entity);
+
+    void update(User user);
 }

@@ -6,13 +6,12 @@ import com.carswap.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 /**
  * Created by hackomotto on 07.08.15.
  */
 
-public class PointsDAOImpl extends HibernateDaoSupport implements PointsDAO {
+public class PointsDAOImpl extends EntityDAOImpl<Points, Long> implements PointsDAO {
     public Points getUserPoints(User user) {
         Query query = getSessionFactory().openSession().createQuery("select p " +
                 "   from Points as p" +

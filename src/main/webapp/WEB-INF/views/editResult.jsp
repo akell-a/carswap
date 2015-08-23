@@ -61,7 +61,9 @@
                     <ul class="arrow-list">
                         <li><a href="changePassword.do">Change password</a></li>
                         <li><a href="editEmail.do">Change email</a></li>
-                        <li><a href="editPoints.do">Add points</a></li>
+                        <c:if test = "${user.role == 'ADMIN'}">
+                            <li><a href="editPoints.do">Add points</a></li>
+                        </c:if>
                     </ul>
                 </li><!-- categories widget end -->
             </ul><!-- sidebar widgets end -->

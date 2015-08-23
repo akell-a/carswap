@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by hackomotto on 01.08.15.
  */
-public interface UserDAO {
+public interface UserDAO extends EntityDAO<User, Long>{
     User getUserByName(User user);
 
     List<Car> getCarsByUser(User user);
@@ -25,10 +25,10 @@ public interface UserDAO {
 
     User getUserByEmail(String email);
 
-    Object merge(User user);
-
-    void update(User user);
-
-    void insert(User user);
+//    Object merge(User user);
+//
+//    void update(User user);
+//
+//    void insert(User user);
 
 }

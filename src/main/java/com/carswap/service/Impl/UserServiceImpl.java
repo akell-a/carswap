@@ -21,16 +21,16 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDAO userDAOImpl;
+    UserDAO userDAO;
     @Autowired
-    PointsDAO pointsDAOImpl;
+    PointsDAO pointsDAO;
 
-    public void setUserDAOImpl(UserDAO userDAOImpl) {
-        this.userDAOImpl = userDAOImpl;
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
-    public void setPointsDAOImpl(PointsDAO pointsDAOImpl) {
-        this.pointsDAOImpl = pointsDAOImpl;
+    public void setPointsDAO(PointsDAO pointsDAO) {
+        this.pointsDAO = pointsDAO;
     }
 
     public boolean isUserLogedin(Model model) {
@@ -42,18 +42,17 @@ public class UserServiceImpl implements UserService {
     }
 
     public void registerUser(User user){
-        userDAOImpl.insert(user);
+        userDAO.save(user);
     }
 
     public User getUserByEmail(String email){
-        User userFromDB = userDAOImpl.getUserByEmail(email);
-
+        User userFromDB = userDAO.getUserByEmail(email);
         return userFromDB != null ? userFromDB : null;
     }
 
     //todo Gena
     public List<Car> getUserCars(User user){
-        List<Car> list = userDAOImpl.getCarsByUser(user);
+        List<Car> list = userDAO.getCarsByUser(user);
         return list;
     }
 
@@ -61,12 +60,10 @@ public class UserServiceImpl implements UserService {
         User userFromDB = getUserByEmail(email);
         if(oldPassword.equals(userFromDB.getPassword())){
             userFromDB.setPassword(newPassword);
-            userDAOImpl.update(userFromDB);
+            userDAO.update(userFromDB);
         } else {
-
             return false;
         }
-
         return true;
     }
 
@@ -76,19 +73,16 @@ public class UserServiceImpl implements UserService {
         boolean isNewEmailInUse = getUserByEmail(newEmail) != null;
         if(null != userFromDB && !isNewEmailInUse){
             userFromDB.setEmail(newEmail);
-            userDAOImpl.update(userFromDB);
+            userDAO.update(userFromDB);
         } else {
-
             return false;
         }
-
         return true;
     }
 
     public boolean editPoints(String email, Long pointsAmount, String operation){
         User userFromDB = getUserByEmail(email);
         if(null == userFromDB){
-
             return false;
         }
         Points points = userFromDB.getPoints();
@@ -97,8 +91,8 @@ public class UserServiceImpl implements UserService {
             points.setUser(userFromDB);
             userFromDB.setPoints(points);
             //todo fix double save issue
-            pointsDAOImpl.save(points);
-            userDAOImpl.update(userFromDB);
+            pointsDAO.save(points);
+            userDAO.update(userFromDB);
         }
 
         if(operation.equalsIgnoreCase(Operation.PLUS.name())){
@@ -106,11 +100,9 @@ public class UserServiceImpl implements UserService {
         } else if (operation.equalsIgnoreCase(Operation.MINUS.name())) {
             points.setAmount(points.getAmount() - pointsAmount);
         } else {
-
             return false;
         }
-        pointsDAOImpl.save(points);
-
+        pointsDAO.save(points);
         return true;
     }
 }

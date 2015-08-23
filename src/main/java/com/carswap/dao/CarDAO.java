@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by hackomotto on 01.08.15.
  */
-public interface CarDAO {
+public interface CarDAO extends EntityDAO<Car, Long>{
     User getCarOwner(Car car);
 
     List<TestDrive> getCarTestDrives(Car car);

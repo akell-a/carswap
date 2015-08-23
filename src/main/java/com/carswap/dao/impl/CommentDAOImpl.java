@@ -15,7 +15,7 @@ import java.util.List;
  * Created by sigen on 8/8/2015.
  */
 
-public class CommentDAOImpl extends HibernateDaoSupport implements CommentDAO {
+public class CommentDAOImpl extends EntityDAOImpl<Comment, Long> implements CommentDAO {
     public List<Comment> getUserComments(User user) {
         Query query = getSessionFactory().openSession().createQuery("select c " +
                 "   from Comments as c" +

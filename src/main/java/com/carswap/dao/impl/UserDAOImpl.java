@@ -16,7 +16,7 @@ import java.util.List;
  * Created by hackomotto on 01.08.15.
  */
 
-public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
+public class UserDAOImpl extends EntityDAOImpl<User, Long> implements UserDAO {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public User getUserByName(User user) {
@@ -86,30 +86,30 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
-    public void insert(User user) {
-        getSessionFactory().openSession().saveOrUpdate(user);
-    }
+//    @Transactional(propagation = Propagation.SUPPORTS)
+//    public void insert(User user) {
+//        getSessionFactory().openSession().saveOrUpdate(user);
+//    }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
-    public Object merge(User user) {
-        return getSessionFactory().openSession().merge(user);
-    }
-
-    @Transactional(propagation = Propagation.SUPPORTS)
-    public void update(User user){
-        Session session = getSessionFactory().openSession();
-        Transaction tx;
-        try {
-            tx = session.beginTransaction();
-            session.update(user);
-            tx.commit();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-    }
+//    @Transactional(propagation = Propagation.SUPPORTS)
+//    public Object merge(User user) {
+//        return getSessionFactory().openSession().merge(user);
+//    }
+//
+//    @Transactional(propagation = Propagation.SUPPORTS)
+//    public void update(User user){
+//        Session session = getSessionFactory().openSession();
+//        Transaction tx;
+//        try {
+//            tx = session.beginTransaction();
+//            session.update(user);
+//            tx.commit();
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        finally {
+//            session.close();
+//        }
+//    }
 }

@@ -4,5 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
+	<!--
+!!! THIS FILE ONLY FOR IMPORTS !!!
+-->
+	<import resource="servlet-context.xml"/>
+	<import resource="hibernate-context.xml"/>
+	<!--
+      !!! THIS FILE ONLY FOR IMPORTS !!!
+     -->
+
 </beans>
