@@ -6,7 +6,6 @@ import com.carswap.model.TestDrive;
 import com.carswap.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.List;

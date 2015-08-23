@@ -57,7 +57,7 @@
     </bean>
 
     <bean id="entityDAO" class="com.carswap.dao.impl.EntityDAOImpl" abstract="true">
-    <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
     <bean id="carDAOImpl" class="com.carswap.dao.impl.CarDAOImpl">

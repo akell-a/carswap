@@ -2,16 +2,14 @@ package com.carswap.service.Impl;
 
 import com.carswap.dao.PointsDAO;
 import com.carswap.dao.UserDAO;
-import com.carswap.dao.impl.UserDAOImpl;
 import com.carswap.model.Car;
 import com.carswap.model.Points;
 import com.carswap.model.User;
 import com.carswap.service.UserService;
 import com.carswap.util.enums.Operation;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -27,6 +25,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     PointsDAO pointsDAOImpl;
 
+    public void setUserDAOImpl(UserDAO userDAOImpl) {
+        this.userDAOImpl = userDAOImpl;
+    }
+
+    public void setPointsDAOImpl(PointsDAO pointsDAOImpl) {
+        this.pointsDAOImpl = pointsDAOImpl;
+    }
+
+    public boolean isUserLogedin(Model model) {
+        return false;
+    }
+    
     public boolean isUserRegistered(User user){
         return false;
     }
@@ -102,9 +112,5 @@ public class UserServiceImpl implements UserService {
         pointsDAOImpl.save(points);
 
         return true;
-    }
-
-    public void setUserDAOImpl(UserDAOImpl userDAOImpl) {
-        this.userDAOImpl = userDAOImpl;
     }
 }

@@ -90,6 +90,7 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
     public void insert(User user) {
         getSessionFactory().openSession().saveOrUpdate(user);
     }
+
     @Transactional(propagation = Propagation.SUPPORTS)
     public Object merge(User user) {
         return getSessionFactory().openSession().merge(user);

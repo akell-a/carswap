@@ -34,7 +34,7 @@ public class User implements Serializable {
     Date birthDate;
 
     @Enumerated(EnumType.STRING)
-    Roles role;
+    Roles role = Roles.USER;
 
     @Column(name = "user_phone")
     String phone;
@@ -47,7 +47,7 @@ public class User implements Serializable {
 
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
-    Date creationDate;
+    Date creationDate = new Date();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)

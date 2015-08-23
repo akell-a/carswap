@@ -1,8 +1,8 @@
 package com.carswap.service;
 
-import com.carswap.dao.impl.UserDAOImpl;
 import com.carswap.model.Car;
 import com.carswap.model.User;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -19,11 +19,11 @@ public interface UserService {
 
     public List<Car> getUserCars(User user);
 
+    public boolean isUserLogedin(Model model);
+
     public boolean editPassword(String oldPassword, String newPassword, String email);
 
     public boolean editEmail(String oldEmail, String newEmail);
 
     public boolean editPoints(String email, Long points, String operation);
-
-    public void setUserDAOImpl(UserDAOImpl userDAO);
 }

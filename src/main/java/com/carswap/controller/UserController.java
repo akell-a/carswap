@@ -47,10 +47,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/processLogin.do", method = RequestMethod.POST)
-    public String loginUser(@RequestParam String email, @RequestParam String password, HttpServletRequest request) throws Exception{
-        User userFromDB = userServiceImpl.getUserByEmail(email);
+    public String loginUser(@ModelAttribute("user") User user, HttpServletRequest request) throws Exception{
+        User userFromDB = userServiceImpl.getUserByEmail(user.getEmail());
         if(null != userFromDB){
-            if(userFromDB.getPassword().equals(password)){
+            if(userFromDB.getPassword().equals(user.getPassword())){
                 request.getSession().setAttribute(USER_MODEL, userFromDB);
 
                 return "redirect:profile.do";
