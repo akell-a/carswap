@@ -53,13 +53,14 @@ public class User implements Serializable {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     List<Car> cars;
 //
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-//    List<Comment> comments;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    List<Comment> comments;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     @JoinColumn(name = "user_id")
-    Points points;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    Points points = new Points(this);
 
     public User() {
     }
@@ -160,11 +161,11 @@ public class User implements Serializable {
         this.cars = cars;
     }
 //
-//    public List<Comment> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(List<Comment> comments) {
-//        this.comments = comments;
-//    }
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

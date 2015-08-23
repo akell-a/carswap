@@ -28,6 +28,13 @@ public class Points implements Serializable {
         return id;
     }
 
+    public Points() {
+    }
+
+    public Points(User user) {
+        this.user = user;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

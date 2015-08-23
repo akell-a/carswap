@@ -29,6 +29,10 @@ public class UserController {
 
     public static final String USER_MODEL = "user";
 
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @InitBinder
     public void registerInitBinder(WebDataBinder binder){
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.YYYY");
@@ -119,7 +123,4 @@ public class UserController {
         return modelAndView;
     }
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 }
