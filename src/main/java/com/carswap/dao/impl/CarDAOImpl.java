@@ -59,7 +59,7 @@ public class CarDAOImpl extends EntityDAOImpl<Car, Long> implements CarDAO {
             Car oldCar = (Car) session.load(Car.class, id);
             oldCar.setCarStatus(car.getCarStatus());
             oldCar.setName(car.getName());
-            oldCar.setType(car.getType());
+            oldCar.setCarType(car.getCarType());
             oldCar.setUser(car.getUser());
             session.merge(oldCar);
             session.getTransaction().commit();

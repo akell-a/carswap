@@ -3,6 +3,7 @@ package com.carswap.controller;
 import com.carswap.model.User;
 import com.carswap.service.UserService;
 import com.carswap.util.enums.Roles;
+import com.carswap.util.mail.SendMailTLS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class UserController {
 
     @InitBinder
     public void registerInitBinder(WebDataBinder binder){
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.YYYY");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
         CustomDateEditor birthdayEditor = new CustomDateEditor(dateFormat, true);
         binder.registerCustomEditor(Date.class, birthdayEditor);
     }
@@ -46,7 +47,7 @@ public class UserController {
             //no error page
         }
         userService.registerUser(user);
-
+        SendMailTLS.sendRegistrationMail(user.getEmail(),user.getName());
         return "login";
     }
 
@@ -56,18 +57,15 @@ public class UserController {
         if(null != userFromDB){
             if(userFromDB.getPassword().equals(user.getPassword())){
                 request.getSession().setAttribute(USER_MODEL, userFromDB);
-
                 return "redirect:profile.do";
             }
         }
-
         throw new Exception("Wrong email or password");
     }
 
     @RequestMapping(value = "/logoutUser.do", method = RequestMethod.GET)
     public String logoutUser(HttpServletRequest request){
         request.getSession().removeAttribute(USER_MODEL);
-
         return "redirect:main.do";
     }
 
@@ -80,7 +78,6 @@ public class UserController {
             boolean status = userService.editPassword(passwordOld, passwordNew, modelUser.getEmail());
             String result = status ? "success" : "fail";
             modelAndView.addObject("result", result);
-
             return modelAndView;
         }
 
@@ -97,7 +94,6 @@ public class UserController {
             modelAndView.addObject("result", result);
             modelUser.setEmail(newEmail);
             request.getSession().setAttribute("user", modelUser);
-
             return modelAndView;
         }
 
@@ -121,6 +117,19 @@ public class UserController {
         request.getSession().setAttribute("user", modelUser);
 
         return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/cars.do", method = RequestMethod.GET)
+    public String showCars(HttpServletRequest request) {
+        User userFromModel = (User) request.getSession().getAttribute("user");
+        if (null != userFromModel) {
+            userFromModel.setCars(userService.getUserCars(userFromModel));
+            request.getSession().setAttribute("user",userFromModel);
+            return "cars";
+        } else {
+            return "notRegistered";
+        }
     }
 
 }

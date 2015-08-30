@@ -1,5 +1,7 @@
 package com.carswap.model;
 import com.carswap.util.enums.CarStatus;
+import com.carswap.util.enums.CarTypes;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,9 +20,11 @@ public class Car implements Serializable {
     String name;
 
     @Column(name = "car_type")
-    String type;
+    @Enumerated(EnumType.STRING)
+    CarTypes carType;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     User user;
 
     @Column(name = "car_status")
@@ -54,12 +58,12 @@ public class Car implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public CarTypes getCarType() {
+        return carType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCarType(CarTypes carType) {
+        this.carType = carType;
     }
 
     public User getUser() {

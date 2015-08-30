@@ -103,7 +103,7 @@
             Profile</a>
         </li>
         <li>
-          <a href="#">
+          <a href="cars.do">
             <i class="icon-nav icon-th-large"></i>
             Your Cars</a>
         </li>

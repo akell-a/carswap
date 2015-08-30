@@ -81,6 +81,47 @@
                                 <input type="submit" class="submit btn-small" value="SUBMIT" />
                             </form>
                         </c:if>
+                        <c:if test = "${editType == 'cars'}">
+                        <jsp:useBean id="car" class="com.carswap.model.Car"/>
+                            <form action="/carswap/processChangeEmail.doEditCar.do" method="post">
+
+                                <div>
+                                    <div class="input string optional">
+                                        <label class="string optional" for="name">Car name *</label>
+                                        <input class="string optional" maxlength="255" id="name" name="name"
+                                               placeholder="${car.name}" type="text" size="50"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input string optional">
+                                        <label class="string optional" for="carType">Car Type </label>
+                                        <select id="carType" name="carType">
+                                            <option selected="selected">${car.carType}</option>
+                                            <option>LUX</option>
+                                            <option>PREMIUM</option>
+                                            <option>BUSSINES</option>
+                                            <option>MIDDLE</option>
+                                            <option>ECONOM</option>
+                                            <option>SOVIET</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input string optional">
+                                        <label class="string optional" for="carStatus">Test drive Status</label>
+                                        <select id="carStatus" name="carStatus">
+                                            <option selected="selected">${car.carStatus}</option>
+                                            <option>AVAILABLE</option>
+                                            <option>UNAVAILABLE</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="simform__actions">
+                                    <input class="sumbit" name="commit" type="submit" value="Add car"/>
+                                </div>
+                        </c:if>
+
                         <c:if test = "${editType == 'fail'}">
                             <section class="error-box">
                                 <p>Can`t edit your data!</p>

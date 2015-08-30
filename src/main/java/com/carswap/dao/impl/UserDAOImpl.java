@@ -53,7 +53,7 @@ public class UserDAOImpl extends EntityDAOImpl<User, Long> implements UserDAO {
     public List<Car> getCarsByUser(User user) {
         Query query = getSessionFactory().openSession().createQuery("select c " +
                 "   from Car as c" +
-                "   join c.user as us" +
+                "   join c.user as user" +
                 "   where user = :user");
         query.setEntity("user", user);
         return query.list();
