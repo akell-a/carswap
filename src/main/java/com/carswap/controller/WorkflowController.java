@@ -26,7 +26,7 @@ import java.util.Date;
 /**
  * Created by hackomotto on 15.08.15.
  */
-@Controller
+ @Controller
 @RequestMapping("/")
 public class WorkflowController {
 

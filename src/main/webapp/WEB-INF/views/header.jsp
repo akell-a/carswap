@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width">
 
   <!-- stylesheets -->
-
+    < link href="../resources/css/main.css" rel="stylesheet" type="text/css"/ >
   <spring:url value="/resources/css/basic.css" var="basicCss" />
   <link href="${basicCss}" rel="stylesheet" />
   <spring:url value="/resources/css/style.css" var="styleCss" />
